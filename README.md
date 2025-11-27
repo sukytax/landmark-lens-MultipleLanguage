@@ -1,19 +1,46 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# 🏛️ Landmark Lens
 
-# Run and deploy your AI Studio app
+Aplikasi web modern untuk mendeteksi landmark dari gambar dan menghasilkan panduan audio naratif secara otomatis menggunakan **Google Gemini AI**.
 
-This contains everything you need to run your app locally.
+### ✨ Fitur Utama
 
-View your app in AI Studio: https://ai.studio/apps/drive/1p1TpaATfSQRDqGCgj2quHjAVA3i7UuRu
+- **AI Detection:** Mengidentifikasi nama dan konteks landmark dari unggahan foto.
+- **Audio Generation:** Mengubah deskripsi teks menjadi panduan audio (TTS) yang natural.
+- **Modern UI:** Desain _Linear-style_ dengan Tailwind CSS, efek glassmorphism, dan dukungan Markdown.
+- **Drag-and-Drop:** Komponen scanner interaktif untuk kemudahan input gambar.
 
-## Run Locally
+### 🛠️ Tech Stack
 
-**Prerequisites:** Node.js
+- **Core:** Next.js 16, TypeScript, React
+- **Styling:** Tailwind CSS, Lucide Icons
+- **AI & Logic:** Google Gemini API (Multimodal), Web Audio API
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+### 🚀 Cara Menjalankan
+
+1.  **Clone & Install**
+
+    ```bash
+    git clone https://github.com/seinzzz/landmark-lens.git
+    cd landmark-ai-guide
+    npm install
+    ```
+
+2.  **Setup Environment**
+    Buat file `.env.local` dan masukkan API Key:
+
+    ```env
+    GOOGLE_API_KEY=your_gemini_api_key
+    ```
+
+3.  **Run Development Server**
+
+    ```bash
+    npm run dev
+    ```
+
+    Buka `http://localhost:3000` di browser.
+
+---
+
+_Dibuat menggunakan Next.js & Gemini AI._
+© 2025 landmark-lens
