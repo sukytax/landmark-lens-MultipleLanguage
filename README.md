@@ -2,27 +2,27 @@
 
 Aplikasi web modern untuk mendeteksi landmark dari gambar dan menghasilkan panduan audio naratif secara otomatis menggunakan **Google Gemini AI**.
 
-### ✨ Fitur Utama
+## ✨ Fitur Utama
 
 - **AI Detection:** Mengidentifikasi nama dan konteks landmark dari unggahan foto.
 - **Audio Generation:** Mengubah deskripsi teks menjadi panduan audio (TTS) yang natural.
 - **Modern UI:** Desain _Linear-style_ dengan Tailwind CSS, efek glassmorphism, dan dukungan Markdown.
 - **Drag-and-Drop:** Komponen scanner interaktif untuk kemudahan input gambar.
 
-### 🛠️ Tech Stack
+## 🛠️ Tech Stack
 
 - **Core:** Next.js 16, TypeScript, React
 - **Styling:** Tailwind CSS, Lucide Icons
 - **AI & Logic:** Google Gemini API (Multimodal), Web Audio API
 
-### 🚀 Cara Menjalankan
+## 🚀 Cara Menjalankan
 
 1.  **Clone & Install**
 
     ```bash
     git clone https://github.com/seinzzz/landmark-lens.git
-    cd landmark-ai-guide
-    npm install
+    cd landmark-lens
+    pnpm install # atau gunakan npm/yarn
     ```
 
 2.  **Setup Environment**
@@ -35,7 +35,7 @@ Aplikasi web modern untuk mendeteksi landmark dari gambar dan menghasilkan pandu
 3.  **Run Development Server**
 
     ```bash
-    npm run dev
+    pnpm run dev
     ```
 
     Buka `http://localhost:3000` di browser.
@@ -43,4 +43,4 @@ Aplikasi web modern untuk mendeteksi landmark dari gambar dan menghasilkan pandu
 ---
 
 _Dibuat menggunakan Next.js & Gemini AI._
-© 2025 landmark-lens
+&copy; 2025 landmark-lens
