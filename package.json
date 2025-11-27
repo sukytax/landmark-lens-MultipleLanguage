@@ -1,12 +1,13 @@
 {
-  "name": "landmark-lens-ar",
+  "name": "landmark-lens",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint",
+    "prepare": "husky"
   },
   "dependencies": {
     "@google/genai": "^1.30.0",
@@ -17,11 +18,18 @@
     "react-markdown": "^10.1.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/eslintrc": "^3.3.1",
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^20.19.25",
     "@types/react": "^18.3.27",
     "@types/react-dom": "^18.3.7",
     "autoprefixer": "^10.4.22",
+    "eslint": "^9.32.0",
+    "eslint-config-next": "15.3.4",
+    "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.7.1",

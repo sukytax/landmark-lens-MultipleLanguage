@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Landmark Lens AR",
   description: "AI-powered photo tourism app",
+  icons: {
+    icon: "/logo.ico", // Secara otomatis membaca dari folder public/logo.ico
+  },
 };
 
 export default function RootLayout({

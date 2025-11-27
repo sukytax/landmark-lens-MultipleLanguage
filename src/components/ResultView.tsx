@@ -200,32 +200,32 @@ const ResultView = ({ result, imageSrc, onReset }: ResultViewProps) => {
 
             {/* Description Area */}
             <div className="custom-scrollbar max-h-[35vh] overflow-y-auto p-6">
-              <article className="prose prose-invert prose-sm md:prose-base max-w-none">
+              <article className="prose prose-sm prose-invert max-w-none md:prose-base">
                 {/* Custom styling for react-markdown to match Linear aesthetic */}
                 <ReactMarkdown
                   components={{
-                    p: ({ node, ...props }) => (
+                    p: ({ ...props }) => (
                       <p
                         className="mb-4 font-light leading-relaxed text-gray-300"
                         {...props}
                       />
                     ),
-                    strong: ({ node, ...props }) => (
+                    strong: ({ ...props }) => (
                       <strong className="font-semibold text-white" {...props} />
                     ),
-                    h1: ({ node, ...props }) => (
+                    h1: ({ ...props }) => (
                       <h3
                         className="mb-2 mt-4 text-lg font-medium text-white"
                         {...props}
                       />
                     ),
-                    h2: ({ node, ...props }) => (
+                    h2: ({ ...props }) => (
                       <h4
                         className="mb-2 mt-4 text-base font-medium text-white"
                         {...props}
                       />
                     ),
-                    li: ({ node, ...props }) => (
+                    li: ({ ...props }) => (
                       <li className="ml-4 text-gray-300" {...props} />
                     ),
                   }}
