@@ -1,6 +1,6 @@
 # 🏛️ Landmark Lens
 
-Aplikasi web modern untuk mendeteksi landmark dari gambar dan menghasilkan panduan audio naratif secara otomatis menggunakan **Google Gemini AI**.
+Aplikasi web modern sederhana untuk mendeteksi landmark dari gambar dan menghasilkan panduan audio naratif secara otomatis menggunakan **Google Gemini AI**.
 
 ## ✨ Fitur Utama
 
