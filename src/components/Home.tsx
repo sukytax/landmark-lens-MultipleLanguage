@@ -34,8 +34,7 @@ export default function Home() {
       });
 
       if (!response.ok) {
-        const errData = await response.json();
-        throw new Error(errData.error || "Analysis failed");
+        throw new Error(response.statusText || "Analysis failed");
       }
 
       const data: AnalysisResponse = await response.json();

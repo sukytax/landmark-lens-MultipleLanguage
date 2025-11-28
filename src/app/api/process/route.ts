@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import {
   identifyLandmark,
-  getLandmarkDetails,
+  fetchLandmarkFacts,
+  generateTourScript,
   generateTourAudio,
 } from "@/services/geminiService";
 
@@ -32,8 +33,9 @@ export async function POST(request: Request) {
     }
 
     // Step 2: Details
-    const { text: description, chunks } =
-      await getLandmarkDetails(landmarkName);
+    const { text: facts, chunks } = await fetchLandmarkFacts(landmarkName);
+
+    const description = await generateTourScript(landmarkName, facts);
 
     // Step 3: TTS
     const audioBase64 = await generateTourAudio(description);
