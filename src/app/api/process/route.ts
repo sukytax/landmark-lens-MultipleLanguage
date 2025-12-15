@@ -11,7 +11,7 @@ export const maxDuration = 60; // Allow longer timeout for chaining models
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { image, mimeType } = body;
+    const { image, mimeType, language = 'en' } = body;
 
     if (!image || !mimeType) {
       return NextResponse.json(
@@ -21,7 +21,7 @@ export async function POST(request: Request) {
     }
 
     // Step 1: Identify
-    const landmarkName = await identifyLandmark(image, mimeType);
+    const landmarkName = await identifyLandmark(image, mimeType, language);
     if (landmarkName === "Unknown") {
       return NextResponse.json(
         {
@@ -33,12 +33,12 @@ export async function POST(request: Request) {
     }
 
     // Step 2: Details
-    const { text: facts, chunks } = await fetchLandmarkFacts(landmarkName);
+    const { text: facts, chunks } = await fetchLandmarkFacts(landmarkName, language);
 
-    const description = await generateTourScript(landmarkName, facts);
+    const description = await generateTourScript(landmarkName, facts, language);
 
     // Step 3: TTS
-    const audioBase64 = await generateTourAudio(description);
+    const audioBase64 = await generateTourAudio(description, language);
 
     return NextResponse.json({
       landmarkName,
@@ -53,8 +53,6 @@ export async function POST(request: Request) {
     if (error instanceof Error) {
       errorMessage = error.message;
     }
-
-    // Sanitize raw Google RPC/XHR errors
     if (
       errorMessage.includes("Rpc failed") ||
       errorMessage.includes("xhr error") ||

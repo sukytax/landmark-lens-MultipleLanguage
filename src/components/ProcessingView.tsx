@@ -1,27 +1,30 @@
 "use client";
 
-import { AppState } from "@/types/types"; // sesuaikan path import lo
+import { AppState } from "@/types/types";
+import { useLanguage } from "@/config/LanguageContext";
 
 interface ProcessingViewProps {
   state: AppState;
 }
 
 export default function ProcessingView({ state }: ProcessingViewProps) {
-  let message = "Initializing...";
-  let subMessage = "Calibrating sensors...";
+  const { t } = useLanguage();
+  
+  let message = t.initializing;
+  let subMessage = t.calibratingSensors;
 
   switch (state) {
     case AppState.ANALYZING:
-      message = "Analyzing Visual Data";
-      subMessage = "Identifying structural patterns...";
+      message = t.analyzingVisualData;
+      subMessage = t.identifyingPatterns;
       break;
     case AppState.SEARCHING:
-      message = "Accessing Global Archives";
-      subMessage = "Cross-referencing historical records...";
+      message = t.accessingArchives;
+      subMessage = t.crossReferencing;
       break;
     case AppState.SYNTHESIZING:
-      message = "Synthesizing Audio Guide";
-      subMessage = "Generating neural voice narration...";
+      message = t.synthesizingAudio;
+      subMessage = t.generatingNarration;
       break;
   }
 

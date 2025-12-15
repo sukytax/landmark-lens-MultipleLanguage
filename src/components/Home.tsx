@@ -12,8 +12,10 @@ import {
 } from "@/types/types";
 import { decode, decodeAudioData } from "@/services/audioUtils";
 import { AlertTriangle } from "lucide-react";
+import { useLanguage } from "@/config/LanguageContext";
 
 export default function Home() {
+  const { t, language } = useLanguage();
   const [appState, setAppState] = useState<AppState>(AppState.IDLE);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(
@@ -30,14 +32,19 @@ export default function Home() {
       const response = await fetch("/api/process", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ image: base64, mimeType }),
+        body: JSON.stringify({ image: base64, mimeType, language }),
       });
 
       if (!response.ok) {
-        throw new Error(response.statusText || "Analysis failed");
+        const errorData = await response.json();
+        throw new Error(errorData.error || response.statusText || "Analysis failed");
       }
 
       const data: AnalysisResponse = await response.json();
+      
+      if (!data.audioBase64) {
+        throw new Error("No audio data received from server");
+      }
 
       // Typed AudioContext creation using ExtendedWindow
       const AudioContextClass =
@@ -57,7 +64,7 @@ export default function Home() {
 
       setAppState(AppState.RESULT);
     } catch (err: unknown) {
-      console.error(err);
+      console.error("Error in handleImageSelected:", err);
       let message = "An unexpected error occurred.";
       if (err instanceof Error) {
         message = err.message;
@@ -141,7 +148,7 @@ export default function Home() {
 
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tight">
-                System Error
+                {t.systemError}
               </h2>
               <p className="mx-auto max-w-md font-light leading-relaxed text-gray-400">
                 {errorMsg}
@@ -152,7 +159,7 @@ export default function Home() {
               onClick={resetApp}
               className="rounded-full bg-white px-8 py-3 font-semibold tracking-wide text-black transition-all hover:scale-105 hover:bg-gray-200"
             >
-              Try Again
+              {t.tryAgain}
             </button>
           </div>
         )}

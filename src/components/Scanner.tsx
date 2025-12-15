@@ -2,12 +2,15 @@
 
 import { FileImage } from "lucide-react";
 import { useRef, useState } from "react";
+import { useLanguage } from "@/config/LanguageContext";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 interface ScannerProps {
   onImageSelected: (base64: string, mimeType: string) => void;
 }
 
 export default function Scanner({ onImageSelected }: ScannerProps) {
+  const { t } = useLanguage();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [dragActive, setDragActive] = useState(false);
 
@@ -64,15 +67,18 @@ export default function Scanner({ onImageSelected }: ScannerProps) {
         <div className="flex items-center gap-2">
           <div className="h-2 w-2 rounded-full bg-white"></div>
           <div className="translate-y-[1px] font-mono text-xs uppercase text-white opacity-80 md:text-sm">
-            Landmark Lens
+            {t.appName}
           </div>
         </div>
 
-        <div className="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-md">
-          <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"></div>
-          <span className="translate-y-[1px] font-mono text-[10px] uppercase text-white opacity-80 md:text-sm">
-            System Online
-          </span>
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-md">
+            <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"></div>
+            <span className="translate-y-[1px] font-mono text-[10px] uppercase text-white opacity-80 md:text-sm">
+              {t.systemOnline}
+            </span>
+          </div>
+          <LanguageSwitcher />
         </div>
       </nav>
 
@@ -87,21 +93,19 @@ export default function Scanner({ onImageSelected }: ScannerProps) {
           <div className="relative z-10 space-y-6">
             <div className="mx-auto flex w-fit items-center justify-center rounded-full border border-ar-primary/30 bg-ar-primary/10 px-4 py-1.5 align-top backdrop-blur-sm">
               <span className="translate-y-[1px] font-mono text-xs uppercase text-ar-primary md:text-xs">
-                Gemini 2.5 Vision Engine
+                {t.tagline}
               </span>
             </div>
 
             <h1 className="text-5xl font-bold leading-[0.9] tracking-tighter text-white drop-shadow-xl md:text-7xl lg:text-8xl">
-              Landmark <br />
+              {t.mainTitle} <br />
               <span className="bg-gradient-to-b from-white to-white/40 bg-clip-text text-transparent">
-                Lens
+                {t.mainSubtitle}
               </span>
             </h1>
 
             <p className="mx-auto max-w-lg text-sm font-light leading-relaxed tracking-wide text-gray-300 lg:text-lg">
-              Upload a landmark photo. Our AI pinpoints the place, verifies the
-              facts, and turns the history into a real-time story made just for
-              you.
+              {t.description}
             </p>
           </div>
 
@@ -114,11 +118,11 @@ export default function Scanner({ onImageSelected }: ScannerProps) {
                 dragActive ? "scale-110 ring-4 ring-ar-primary/50" : ""
               }`}
             >
-              {dragActive ? "Drop Image Now" : "Select Photo"}
+              {dragActive ? t.dropImageNow : t.selectPhoto}
             </button>
           </div>
           <p className="mt-2 text-sm text-white/70">
-            or Drag and drop your image here
+            {t.dragAndDrop}
           </p>
         </div>
 
@@ -138,19 +142,19 @@ export default function Scanner({ onImageSelected }: ScannerProps) {
           <div className="flex items-center gap-2">
             <div className="h-1.5 w-1.5 rounded-full bg-white/40"></div>
             <span className="translate-y-[2px] md:translate-y-[1px] md:text-sm">
-              Visual Recognition
+              {t.visualRecognition}
             </span>
           </div>
           <div className="flex items-center gap-2">
             <div className="h-1.5 w-1.5 rounded-full bg-white/40"></div>
             <span className="translate-y-[2px] md:translate-y-[1px] md:text-sm">
-              Search Grounding
+              {t.searchGrounding}
             </span>
           </div>
           <div className="flex items-center gap-2">
             <div className="h-1.5 w-1.5 rounded-full bg-white/40"></div>
             <span className="translate-y-[2px] md:translate-y-[1px] md:text-sm">
-              Neural TTS
+              {t.neuralTTS}
             </span>
           </div>
         </div>
@@ -168,9 +172,9 @@ export default function Scanner({ onImageSelected }: ScannerProps) {
         <div className="pointer-events-none absolute inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm transition-all duration-300">
           <div className="rounded-2xl border-4 border-dashed border-white/30 p-12 text-center">
             <FileImage className="mx-auto mb-4 h-12 w-12 text-white/80" />
-            <h2 className="text-2xl font-bold text-white">Drop Image Here</h2>
+            <h2 className="text-2xl font-bold text-white">{t.dropImageHere}</h2>
             <p className="mt-2 text-sm text-white/70">
-              Release to upload your landmark photo
+              {t.releaseToUpload}
             </p>
           </div>
         </div>
