@@ -5,6 +5,7 @@ import { AnalysisResult, ExtendedWindow } from "@/types/types";
 import { ArrowLeft, Pause, Play, Globe, ExternalLink } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
+import { useLanguage } from "@/config/LanguageContext";
 
 interface ResultViewProps {
   result: AnalysisResult;
@@ -13,6 +14,7 @@ interface ResultViewProps {
 }
 
 const ResultView = ({ result, imageSrc, onReset }: ResultViewProps) => {
+  const { t } = useLanguage();
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -137,13 +139,13 @@ const ResultView = ({ result, imageSrc, onReset }: ResultViewProps) => {
           className="group z-10 flex items-center space-x-2 rounded-full border border-white/10 bg-black/20 px-4 py-2 text-sm font-medium backdrop-blur-md transition-all hover:border-white/20 hover:bg-white/10"
         >
           <ArrowLeft className="h-4 w-4 text-gray-400 transition-colors group-hover:text-white" />
-          <span className="text-gray-300 group-hover:text-white">Scan New</span>
+          <span className="text-gray-300 group-hover:text-white">{t.scanNew}</span>
         </button>
 
         <div className="flex items-center space-x-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 shadow-[0_0_10px_rgba(16,185,129,0.2)]">
           <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />
           <span className="font-mono text-[10px] font-bold tracking-widest text-emerald-500">
-            ANALYSIS COMPLETE
+            {t.analysisComplete}
           </span>
         </div>
       </div>
@@ -159,7 +161,7 @@ const ResultView = ({ result, imageSrc, onReset }: ResultViewProps) => {
             </h1>
             <div className="flex items-center space-x-2 text-sm font-medium text-gray-400">
               <Globe className="h-3 w-3" />
-              <span>AI Detected Landmark</span>
+              <span>{t.aiDetectedLandmark}</span>
             </div>
           </div>
 
@@ -181,7 +183,7 @@ const ResultView = ({ result, imageSrc, onReset }: ResultViewProps) => {
 
                 <div className="flex-grow space-y-2">
                   <div className="flex justify-between text-[11px] font-medium uppercase tracking-wide text-gray-400">
-                    <span>Audio Guide</span>
+                    <span>{t.audioGuide}</span>
                     <span className="tabular-nums opacity-70">
                       {currentTime.toFixed(1)}s / {duration.toFixed(1)}s
                     </span>
@@ -239,7 +241,7 @@ const ResultView = ({ result, imageSrc, onReset }: ResultViewProps) => {
               {result.groundingSource.length > 0 && (
                 <div className="mt-8 border-t border-white/5 pt-4">
                   <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-gray-500">
-                    Sources
+                    {t.sources}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {result.groundingSource.map((chunk, i) =>
