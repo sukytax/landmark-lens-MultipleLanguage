@@ -36,7 +36,8 @@ export default function Home() {
       });
 
       if (!response.ok) {
-        throw new Error(response.statusText || "Analysis failed");
+        const errorData = await response.json();
+        throw new Error(errorData.error || response.statusText || "Analysis failed");
       }
 
       const data: AnalysisResponse = await response.json();
@@ -63,7 +64,7 @@ export default function Home() {
 
       setAppState(AppState.RESULT);
     } catch (err: unknown) {
-      console.error(err);
+      console.error("Error in handleImageSelected:", err);
       let message = "An unexpected error occurred.";
       if (err instanceof Error) {
         message = err.message;
